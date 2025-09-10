@@ -63,7 +63,6 @@ if (navigator.geolocation) {
             .bindPopup("Your current location").openPopup();
 
         // Allow marker to be dragged to fine-tune location
-        currentMarker.dragging.enable();
         currentMarker.on('dragend', function(e) {
             const markerLatLng = e.target.getLatLng();
             currentLocation = { lat: markerLatLng.lat, lng: markerLatLng.lng };
@@ -73,7 +72,18 @@ if (navigator.geolocation) {
         alert("Geolocation failed or was denied. You can manually drag the pin on the map.");
     });
 }
+// Allow users to click anywhere on the map to set a new location
+map.on('click', function(e) {
+    currentLocation = { lat: e.latlng.lat, lng: e.latlng.lng };
 
+    // If a pin already exists, move it. If not, create a new one.
+    if (currentMarker) {
+        currentMarker.setLatLng(e.latlng);
+    } else {
+        currentMarker = L.marker(e.latlng).addTo(map);
+    }
+    currentMarker.bindPopup("Report Location").openPopup();
+});
 // --- FORM SUBMISSION ---
 const showFormBtn = document.getElementById('showFormBtn');
 const reportForm = document.getElementById('reportForm');
