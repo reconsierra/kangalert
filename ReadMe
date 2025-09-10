@@ -1,22 +1,27 @@
 
-# Kangalert – Wildlife Strike Reporting App
+# Kangalert – Wildlife Strike Reporter 🦘
 
-**Kangalert** is a mobile-friendly app designed to help road users report wildlife strikes, notify rescue services, and track hotspots for animal collisions.
+**Kangalert** is a mobile-friendly web app that allows road users to quickly report wildlife strikes (e.g. kangaroos, wombats, possums) and notify local rescue services. It helps reduce duplicate reports, improve response times, and build a clearer picture of wildlife strike hotspots.
 
-## Features
+> 🔄 This is the **public version** of Kangalert. For rescue teams and volunteers, please use the https://kangalert-rescuer.streamlit.app.
 
-- 📍 Map-based reporting with GPS support
-- 📝 Strike report form with animal details and photo upload
-- 🚨 Rescue service dashboard with status updates and volunteer alerts
-- 👥 Community engagement with joinable reports and notifications
-- 🔥 Hotspot analytics with exportable reports
-- ⚙️ Profile and rescue admin settings
-- 🔒 Privacy-focused with optional anonymous reporting
+---
 
-## Installation
+## 🚗 Features for Road Users
 
-To run the app locally:
+- 📍 Automatically detects your location and centres the map
+- 📝 Submit wildlife strike reports with condition, joey presence, and optional photo
+- 🗺️ View existing reports to avoid duplicates
+- 🔔 Join a report to receive updates from rescuers
+- 🔒 Anonymous reporting supported
+
+---
+
+## 🚀 Getting Started
+
+### Installation (for local testing)
 
 ```bash
 pip install -r requirements.txt
 streamlit run kangalert.py
+
