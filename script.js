@@ -63,7 +63,8 @@ if (navigator.geolocation) {
             .bindPopup("Your current location").openPopup();
 
         // Allow marker to be dragged to fine-tune location
-        currentMarker.on('dragend', function(e) {
+                
+      currentMarker.on('dragend', function(e) {
             const markerLatLng = e.target.getLatLng();
             currentLocation = { lat: markerLatLng.lat, lng: markerLatLng.lng };
             console.log("Marker dragged to:", currentLocation);
