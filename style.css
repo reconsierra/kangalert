@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.header-container {
+    background-color: #476478; /* Muted blue/grey */
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+#map {
+    height: 400px;
+    width: 100%;
+    border-bottom: 2px solid #69822C; /* Olive green */
+}
+
+.report-form-container {
+    padding: 1rem;
+    background-color: #647979; /* Warmer grey */
+    color: white;
+}
+
+#showFormBtn, #submitReportBtn {
+    background-color: #69822C; /* Olive green */
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#reportForm {
+    margin-top: 1rem;
+    background-color: #637247; /* Dark earthy green */
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"], textarea, select {
+    width: 100%;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    border: 1px solid #563E27; /* Rich brown */
+    border-radius: 4px;
+    background-color: #f0f0f0;
+}
