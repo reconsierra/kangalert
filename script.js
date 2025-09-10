@@ -5,17 +5,11 @@ import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gsta
 // Your web app's Firebase configuration
 // Paste your firebaseConfig object here from the Firebase console
 const firebaseConfig = {
-  // Your API Key
   apiKey: "AIzaSyCtNOFajQsqUM6gnXoJRuMjhKNLd3cuqs0",
-  // Your Auth Domain
   authDomain: "kangalert-8cb1d.firebaseapp.com",
-  // Your Project ID
   projectId: "kangalert-8cb1d",
-  // Your Storage Bucket
   storageBucket: "kangalert-8cb1d.firebasestorage.app",
-  // Your Messaging Sender ID
   messagingSenderId: "287396440261",
-  // Your App ID
   appId: "1:287396440261:web:59f47b5041cf1caaeca8ac"
 };
 
