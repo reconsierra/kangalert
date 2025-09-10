@@ -43,48 +43,54 @@ onAuthStateChanged(auth, (currentUser) => {
 });
 
 // --- MAP AND GEOLOCATION ---
-let map = L.map('map').setView([-25.2744, 133.7751], 5); // Australia center
-let currentMarker;
-let currentLocation;
+    let map = L.map('map').setView([-25.2744, 133.7751], 5); // Australia center
+    let currentMarker;
+    let currentLocation;
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
-// Get current location
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(position => {
-        const lat = position.coords.latitude;
-        const lng = position.coords.longitude;
-        currentLocation = { lat, lng };
-        map.setView([lat, lng], 14);
+    // Get current location and set the initial pin
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            currentLocation = { lat, lng };
+            map.setView([lat, lng], 14);
 
-        currentMarker = L.marker([lat, lng]).addTo(map)
-            .bindPopup("Your current location").openPopup();
+            currentMarker = L.marker([lat, lng], { draggable: true }).addTo(map)
+                .bindPopup("Your current location").openPopup();
+            
+            // Update location when marker is dragged
+            currentMarker.on('dragend', function(e) {
+                const markerLatLng = e.target.getLatLng();
+                currentLocation = { lat: markerLatLng.lat, lng: markerLatLng.lng };
+                console.log("Marker dragged to:", currentLocation);
+            });
+        }, () => {
+            alert("Geolocation failed or was denied. You can manually click on the map to place a pin.");
+        });
+    }
 
-        // Allow marker to be dragged to fine-tune location
-                
-      currentMarker.on('dragend', function(e) {
+    // Allow users to click anywhere on the map to place or move the pin
+    map.on('click', function(e) {
+        currentLocation = { lat: e.latlng.lat, lng: e.latlng.lng };
+
+        if (currentMarker) {
+            currentMarker.setLatLng(e.latlng);
+        } else {
+            currentMarker = L.marker(e.latlng, { draggable: true }).addTo(map);
+        }
+        currentMarker.bindPopup("Report Location").openPopup();
+        
+        // Re-enable drag functionality after a new pin is created
+        currentMarker.on('dragend', function(e) {
             const markerLatLng = e.target.getLatLng();
             currentLocation = { lat: markerLatLng.lat, lng: markerLatLng.lng };
             console.log("Marker dragged to:", currentLocation);
         });
-    }, () => {
-        alert("Geolocation failed or was denied. You can manually drag the pin on the map.");
     });
-}
-// Allow users to click anywhere on the map to set a new location
-map.on('click', function(e) {
-    currentLocation = { lat: e.latlng.lat, lng: e.latlng.lng };
-
-    // If a pin already exists, move it. If not, create a new one.
-    if (currentMarker) {
-        currentMarker.setLatLng(e.latlng);
-    } else {
-        currentMarker = L.marker(e.latlng).addTo(map);
-    }
-    currentMarker.bindPopup("Report Location").openPopup();
-});
 // --- FORM SUBMISSION ---
 const showFormBtn = document.getElementById('showFormBtn');
 const reportForm = document.getElementById('reportForm');
