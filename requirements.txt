@@ -1,8 +1,10 @@
 
+
 streamlit
 streamlit-folium
 streamlit-js-eval
 folium
 pillow
 pandas
+
 
